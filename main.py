@@ -12,6 +12,6 @@ def get_sarcastic_text(text: str) -> str:
                     else c.upper()
                     for i, c in enumerate(text)])
 
-
+                
 if __name__ == "__main__":
     print(get_sarcastic_text("Look at me; I'm reading the example code!"))
