@@ -50,7 +50,7 @@ jobs:
       - name: Copy to Ec2
         env:
           CREDENTIALS: ${{ secrets.EC2_PEM_KEY }}
-          ADDRESS: $ {{ secrets.EC2_IP_ADDRESS }}
+          ADDRESS: ${{ secrets.EC2_IP_ADDRESS }}
         run: |
           echo "$CREDENTIALS" > creds.pem
           chmod 400 creds.pem
