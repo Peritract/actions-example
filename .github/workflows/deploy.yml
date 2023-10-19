@@ -17,13 +17,13 @@ jobs:
     steps:
       # Checkout the code
       - name: Checkout
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
       # Install Python
       - name: Install Python
-      - uses: actions/setup-python@v4
+        uses: actions/setup-python@v4
       # Install required packages
       - name: Install packages
-      - run: pip3 install -r requirements.txt
+        run: pip3 install -r requirements.txt
       # Run pytest
       - name: Run tests
-      - run: pytest
+        run: pytest
