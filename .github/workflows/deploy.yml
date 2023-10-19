@@ -42,4 +42,4 @@ jobs:
       - name: Run linter
         run: |
           ls
-          pylint */*.py
+          pylint ./main.py ./test_main.py
