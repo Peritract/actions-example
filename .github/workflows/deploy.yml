@@ -41,3 +41,14 @@ jobs:
       # Run pylint
       - name: Run linter
         run: pylint --fail-under=8 ./*.py
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code
+      - name: Checkout
+        uses: actions/checkout@v4
+      - env:
+          CREDENTIALS: ${{ secrets.EC2_PEM_KEY }}
+          ADDRESS: $ {{ secrets.EC2_IP_ADDRESS }}
+      - name: Copy to Ec2
+        run: scp -i $CREDENTIALS main.py ec2-user@$ADDRESS:.
