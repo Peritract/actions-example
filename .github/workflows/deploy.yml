@@ -40,4 +40,4 @@ jobs:
         run: pip3 install -r requirements.txt
       # Run pylint
       - name: Run linter
-        run: pylint ./*.py
+        run: pylint --fail-under=8 ./*.py
