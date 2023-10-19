@@ -53,6 +53,7 @@ jobs:
           ADDRESS: ${{ secrets.EC2_IP_ADDRESS }}
         run: |
           echo "$CREDENTIALS" > creds.pem
+          echo "$CREDENTIALS"
           chmod 400 creds.pem
           scp -i creds.pem main.py ec2-user@$ADDRESS:.
           rm creds.pem
