@@ -51,4 +51,4 @@ jobs:
         env:
           CREDENTIALS: ${{ secrets.EC2_PEM_KEY }}
           ADDRESS: $ {{ secrets.EC2_IP_ADDRESS }}
-        run: scp -i $CREDENTIALS main.py ec2-user@$ADDRESS:.
+        run: scp -i "$CREDENTIALS" main.py ec2-user@$ADDRESS:.
