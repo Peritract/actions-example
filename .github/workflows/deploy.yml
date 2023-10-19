@@ -51,4 +51,8 @@ jobs:
         env:
           CREDENTIALS: ${{ secrets.EC2_PEM_KEY }}
           ADDRESS: $ {{ secrets.EC2_IP_ADDRESS }}
-        run: scp -i "$CREDENTIALS" main.py ec2-user@$ADDRESS:.
+        run: |
+          echo "$CREDENTIALS" > creds.pem
+          chmod 400 creds.pem
+          scp -i creds.pem main.py ec2-user@$ADDRESS:.
+          rm creds.pem
