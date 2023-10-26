@@ -1,5 +1,7 @@
 """Tests for the functions in main.py."""
 
+import pytest
+
 from main import get_sarcastic_text
 
 
