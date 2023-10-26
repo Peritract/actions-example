@@ -48,12 +48,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Copy to Ec2
-        env:
-          CREDENTIALS: ${{ secrets.EC2_PEM_KEY }}
-          ADDRESS: ${{ secrets.EC2_IP_ADDRESS }}
-        run: |
-          echo "$CREDENTIALS" > creds.pem
-          cat .ssh/authorized_keys
-          chmod 400 creds.pem
-          scp -i creds.pem main.py ec2-user@$ADDRESS:.
-          rm creds.pem
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
