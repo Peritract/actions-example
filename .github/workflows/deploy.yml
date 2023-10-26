@@ -48,9 +48,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Copy to Ec2
-        uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
+        uses: easingthemes/ssh-deploy@main
