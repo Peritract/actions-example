@@ -1,8 +1,7 @@
 """Tests for the functions in main.py."""
 
-import pytest
-
 from main import get_sarcastic_text
+
 
 def test_rejects_non_string_input():
     """Checks that the function rejects invalid arguments."""
