@@ -63,15 +63,7 @@ jobs:
           chmod 400 keyfile
       - name: Stop previous
         run: |
-          ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << EOF
-          PID=$(pgrep -f "python3 main")
-          if [ ! -z "$PID" ]; then
-          kill $PID
-          else
-          echo "No process running"
-          fi
-          exit
-          EOF
+          ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'pkill -f "python3 main.py"'
       - name: Start new
         run: |
           ssh -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<EOF
