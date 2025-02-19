@@ -55,6 +55,10 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
         uses: easingthemes/ssh-deploy@main
+      - name: Create pemkey
+        run: |
+          echo {{secrets.SSH_PRIVATE_KEY }} > .pemkey
+          chmod 400 .pemkey
       - name: Stop previous
         run: |
           echo {{secrets.SSH_PRIVATE_KEY }} > .pemkey
