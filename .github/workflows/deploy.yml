@@ -59,10 +59,9 @@ jobs:
         run: |
           echo {{secrets.SSH_PRIVATE_KEY }} > .pemkey
           chmod 400 .pemkey
+          cat .pemkey
       - name: Stop previous
         run: |
-          echo {{secrets.SSH_PRIVATE_KEY }} > .pemkey
-          chmod -700 .pemkey
           ssh -tt -i .pemkey ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<EOF
           PID=$(pgrep -f "python app")
           if [ ! -z "$PID" ]; then
