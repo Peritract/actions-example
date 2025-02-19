@@ -61,6 +61,9 @@ jobs:
         run: |
           echo "$PEMKEY" >> keyfile
           chmod 400 keyfile
+      - name: Stop previous
+        run: |
+          ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'kill $(pgrep -f "python app")'
       - name: Start new
         run: |
           ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "nohup python3 python app.py &"
