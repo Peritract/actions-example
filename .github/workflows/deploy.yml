@@ -63,7 +63,7 @@ jobs:
           chmod 400 keyfile
       - name: Stop previous
         run: |
-          ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'pkill -f "python3 main.py"'
+          ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'pkill "python3 main.py"'
       - name: Start new
         run: |
           ssh -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<EOF
