@@ -61,16 +61,15 @@ jobs:
         run: |
           echo "$PEMKEY" >> keyfile
           chmod 400 keyfile
-          ls
       - name: Stop previous
         run: |
           ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<EOF
-          PID=$(pgrep -f "python app")
-          if [ ! -z "$PID" ]; then
-          kill -9 $PID
-          else
-          echo "No process running"
-          fi 
+            PID=$(pgrep -f "python app")
+            if [ ! -z "$PID" ]; then
+              kill $PID
+            else
+              echo "No process running"
+            fi 
           EOF
       - name: Start new
         run: |
