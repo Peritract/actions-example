@@ -57,7 +57,9 @@ jobs:
         uses: easingthemes/ssh-deploy@main
       - name: Stop previous
         run: |
-          ssh -tt -i {{secrets.SSH_PRIVATE_KEY }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<EOF
+          echo {{secrets.SSH_PRIVATE_KEY }} > .pemkey
+          chmod -700 .pemkey
+          ssh -tt -i .pemkey ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<EOF
           PID=$(pgrep -f "python app")
           if [ ! -z "$PID" ]; then
           kill -9 $PID
