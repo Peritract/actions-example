@@ -61,18 +61,8 @@ jobs:
         run: |
           echo "$PEMKEY" >> keyfile
           chmod 400 keyfile
-      - name: Stop previous
-        run: |
-          ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<EOF
-            PID=$(pgrep -f "python app")
-            if [ ! -z "$PID" ]; then
-              kill $PID
-            else
-              echo "No process running"
-            fi 
-          EOF
       - name: Start new
         run: |
-          ssh -tt -i dashboard/.pemkey ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<EOF
+          ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<EOF
           nohup python3 python app.py &
           EOF
