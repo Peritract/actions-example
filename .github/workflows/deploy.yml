@@ -63,7 +63,14 @@ jobs:
           chmod 400 keyfile
       - name: Stop previous
         run: |
-          ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'kill $(pgrep -f "python app")'
+          ssh -tt -i dashboard/.pemkey ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << EOF
+          PID=$(pgrep -f "python app")
+          if [ ! -z "$PID" ]; then
+          kill $PID
+          else
+          echo "No process running"
+          fi 
+          EOF
       - name: Start new
         run: |
-          ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "nohup python3 python app.py &"
+          ssh -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "nohup python3 python app.py &"
