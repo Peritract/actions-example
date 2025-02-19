@@ -74,4 +74,4 @@ jobs:
           EOF
       - name: Start new
         run: |
-          ssh -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "pip install -r requirements.txt && nohup python3 main.py &"
+          ssh -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "pip install -r requirements.txt && nohup python3 main.py & && exit"
