@@ -57,12 +57,12 @@ jobs:
         uses: easingthemes/ssh-deploy@main
       - name: Create pemkey
         run: |
-          echo ${{secrets.SSH_PRIVATE_KEY }} > .pemkey
-          chmod 400 .pemkey
-          cat .pemkey
+          echo ${{ secrets.SSH_PRIVATE_KEY }} > keyfile
+          chmod 400 keyfile
+          ls
       - name: Stop previous
         run: |
-          ssh -tt -i .pemkey ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<EOF
+          ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<EOF
           PID=$(pgrep -f "python app")
           if [ ! -z "$PID" ]; then
           kill -9 $PID
