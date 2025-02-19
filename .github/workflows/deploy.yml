@@ -64,7 +64,7 @@ jobs:
       - name: Stop previous
         run: |
           ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << EOF
-          PID=$(pgrep -f "python app")
+          PID=$(pgrep -f "python main")
           if [ ! -z "$PID" ]; then
           kill $PID
           else
@@ -74,4 +74,4 @@ jobs:
           EOF
       - name: Start new
         run: |
-          ssh -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "nohup python3 app.py &"
+          ssh -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "nohup python3 main.py &"
