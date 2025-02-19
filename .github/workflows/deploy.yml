@@ -63,6 +63,4 @@ jobs:
           chmod 400 keyfile
       - name: Start new
         run: |
-          ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<EOF
-          nohup python3 python app.py &
-          EOF
+          ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "nohup python3 python app.py &"
