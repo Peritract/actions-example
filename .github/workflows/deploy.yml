@@ -57,7 +57,7 @@ jobs:
         uses: easingthemes/ssh-deploy@main
       - name: Create pemkey
         run: |
-          echo {{secrets.SSH_PRIVATE_KEY }} > .pemkey
+          echo ${{secrets.SSH_PRIVATE_KEY }} > .pemkey
           chmod 400 .pemkey
           cat .pemkey
       - name: Stop previous
