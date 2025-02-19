@@ -56,8 +56,10 @@ jobs:
           TARGET: ${{ secrets.REMOTE_TARGET }}
         uses: easingthemes/ssh-deploy@main
       - name: Create pemkey
+        env:
+          PEMKEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          echo ${{ secrets.SSH_PRIVATE_KEY }} > keyfile
+          echo "$PEMKEY" >> keyfile
           chmod 400 keyfile
           ls
       - name: Stop previous
