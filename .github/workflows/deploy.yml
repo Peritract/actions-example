@@ -64,7 +64,7 @@ jobs:
       - name: Stop previous
         run: |
           ssh -tt -i keyfile ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << EOF
-          PID=$(pgrep -f "python main")
+          PID=$(pgrep -f "python3 main")
           if [ ! -z "$PID" ]; then
           kill $PID
           else
