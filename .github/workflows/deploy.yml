@@ -69,7 +69,8 @@ jobs:
           kill $PID
           else
           echo "No process running"
-          fi 
+          fi
+          exit
           EOF
       - name: Start new
         run: |
