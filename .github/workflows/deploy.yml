@@ -20,7 +20,7 @@ jobs:
           python-version: '3.11'
       # Install required packages
       - name: Install packages
-        run: pip3 install -r requirements.txt
+        run: pip3 install -r ./langdale_zoo_api/requirements.txt
       # Run pytest
       - name: Run tests
         run: pytest
@@ -40,8 +40,8 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > .pemkey
           chmod 400 .pemkey
       - name: Deploy
-        run: scp -r -o "StrictHostKeyChecking=no" -i .pemkey . ec2-user@"${{ secrets.REMOTE_HOST }}":.
+        run: scp -r -o "StrictHostKeyChecking=no" -i .pemkey langdale_zoo_api ec2-user@"${{ secrets.REMOTE_HOST }}":.
       - name: "Stop server"
-        run: pkill -f main.py
+        run: pkill -f app.py
       - name: "Restart server"
-        run: nohup python3 -u main.py &
+        run: nohup python3 -u app.py &
