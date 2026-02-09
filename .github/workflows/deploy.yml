@@ -35,6 +35,8 @@ jobs:
         uses: actions/checkout@v4
       # Store the key as a file
       - name: "Store key"
-        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > .pemkey
+        run: | 
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > .pemkey
+          chmod 400 .pemkey
       - name: Deploy
         run: scp -o "StrictHostKeyChecking=no" -i .pemkey test_main.py ec2-user@"${{ secrets.REMOTE_HOST }}":.
