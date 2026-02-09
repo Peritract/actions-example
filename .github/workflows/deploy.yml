@@ -40,8 +40,8 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > .pemkey
           chmod 400 .pemkey
       - name: Deploy
-        run: scp -o "StrictHostKeyChecking=no" -i .pemkey test_main.py ec2-user@"${{ secrets.REMOTE_HOST }}":.
+        run: scp -r -o "StrictHostKeyChecking=no" -i .pemkey . ec2-user@"${{ secrets.REMOTE_HOST }}":.
       - name: "Stop server"
-        run: pkill python3
+        run: pkill -f main.py
       - name: "Restart server"
         run: nohup python3 -u main.py &
