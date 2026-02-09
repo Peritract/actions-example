@@ -34,14 +34,6 @@ jobs:
       # Checkout the code
       - name: Checkout
         uses: actions/checkout@v4
-      # Install Python
-      - name: Install Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-      # Install required packages
-      - name: Install packages
-        run: pip3 install -r ./langdale_zoo_api/requirements.txt
       # Store the key as a file
       - name: "Store key"
         run: | 
