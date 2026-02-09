@@ -42,7 +42,7 @@ jobs:
       - name: Deploy
         run: scp -r -o "StrictHostKeyChecking=no" -i .pemkey langdale_zoo_api ec2-user@"${{ secrets.REMOTE_HOST }}":.
       - name: "Stop server"
-        run: pkill -f app.py
+        run: pkill -f app.py || true
       - name: "Restart server"
         run: |
           cd langdale_zoo_api
