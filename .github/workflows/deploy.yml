@@ -42,6 +42,6 @@ jobs:
       - name: Deploy
         run: scp -o "StrictHostKeyChecking=no" -i .pemkey test_main.py ec2-user@"${{ secrets.REMOTE_HOST }}":.
       - name: "Stop server"
-        run: pkill "python3 -u main.py"
+        run: pkill python3
       - name: "Restart server"
         run: nohup python3 -u main.py &
