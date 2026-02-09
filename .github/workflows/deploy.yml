@@ -39,4 +39,4 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           echo "${{ secrets.REMOTE_HOST }}" > ~/.ssh/known_hosts
       - name: Deploy
-        run: scp main.py ec2-user@"${{ secrets.REMOTE_HOST }}":.
+        run: scp -v -o "StrictHostKeyChecking=no" main.py ec2-user@"${{ secrets.REMOTE_HOST }}":.
