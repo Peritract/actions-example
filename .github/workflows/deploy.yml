@@ -39,10 +39,7 @@ jobs:
         run: | 
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > .pemkey
           chmod 400 .pemkey
-      - name: Deploy
+      - name: "Copy files"
         run: scp -r -o "StrictHostKeyChecking=no" -i .pemkey langdale_zoo_api ec2-user@"${{ secrets.REMOTE_HOST }}":.
-      - name: "Stop server"
-        run: ssh -o "StrictHostKeyChecking=no" -i .pemkey ec2-user@"${{ secrets.REMOTE_HOST }}" "pkill -f app.py || true"
       - name: "Restart server"
-        run: |
-          ssh -o "StrictHostKeyChecking=no" -i .pemkey ec2-user@"${{ secrets.REMOTE_HOST }}" "cd langdale_zoo_api; nohup python3 -u app.py &"
+        run: ssh -o "StrictHostKeyChecking=no" -i .pemkey ec2-user@"${{ secrets.REMOTE_HOST }}" bash ./restart.sh
