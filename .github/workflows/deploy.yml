@@ -44,4 +44,4 @@ jobs:
       - name: "Stop server"
         run: ssh -o "StrictHostKeyChecking=no" -i .pemkey ec2-user@"${{ secrets.REMOTE_HOST }}" "pkill -f./langdale_zoo_api/app.py || true"
       - name: "Restart server"
-        run: ssh -o "StrictHostKeyChecking=no" -i .pemkey ec2-user@"${{ secrets.REMOTE_HOST }}" "nohup python3 -u ./langdale_zoo_api/app.py &"
+        run: ssh -o "StrictHostKeyChecking=no" -i .pemkey ec2-user@"${{ secrets.REMOTE_HOST }}" "nohup python3 -u ./langdale_zoo_api/app.py > /dev/null 2>&1 &"
