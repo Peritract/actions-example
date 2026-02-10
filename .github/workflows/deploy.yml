@@ -42,6 +42,6 @@ jobs:
       - name: "Copy files"
         run: scp -r -o "StrictHostKeyChecking=no" -i .pemkey langdale_zoo_api ec2-user@"${{ secrets.REMOTE_HOST }}":.
       - name: "Stop server"
-        run: ssh -o "StrictHostKeyChecking=no" -i .pemkey ec2-user@"${{ secrets.REMOTE_HOST }}" "pkill -f ./langdale_zoo_api/app.py || true"
+        run: ssh -o "StrictHostKeyChecking=no" -i .pemkey ec2-user@"${{ secrets.REMOTE_HOST }}" "pkill -f './langdale_zoo_api/app.py' || true"
       - name: "Restart server"
         run: ssh -o "StrictHostKeyChecking=no" -i .pemkey ec2-user@"${{ secrets.REMOTE_HOST }}" "nohup python3 -u ./langdale_zoo_api/app.py > /dev/null 2>&1 &"
